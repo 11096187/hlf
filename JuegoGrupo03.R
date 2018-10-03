@@ -1,12 +1,17 @@
 # menu of the game
-menu <- function() {
-  # Shows menu options:
-  writeLines("Ingrese el numero de la accion que desea realizar:\n1) Jugar 1 usuario, leyendo la posicion inicial de la flota de un fichero externo\n2) Jugar 2 usuarios, cada usuario elige las posiciones de su flota por teclado, que sera contra la que va a jugar el otro usuario\n3) Estadisticas\n4) Abandonar el juego")
+menu <- function() 
+{
+  # Show menu options:
+  writeLines("Enter the number of an option you want to execute:
+             1) Single player game, reading the initial position of the fleet of an external file
+             2) Two player game, each user chooses the positions of his fleet by keyboard, which will be against which the other user will play
+             3) Statistics
+             4) Exit game")
 
-  # Ask for user input and validates it. Will keep asking for input until it is valid.
+  # Ask for user input and validate it. Keep ask for input until it is valid.
   seleccion <- inputUsuario()
   while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) {
-    print("Debe ingresar uno de los siguientes numeros 1,2,3 o 4")
+    print("You must enter one of the following numbers: 1,2,3 o 4")
     seleccion <- inputUsuario()
   }
 
@@ -29,11 +34,16 @@ menu <- function() {
     }
 
     # The following will appear after option 1, 2 or 3 have finished running. That is, users are directed back to the menu.
-
-    writeLines("Ingrese el numero de la accion que desea realizar:\n1) Jugar 1 usuario, leyendo la posicion inicial de la flota de un fichero externo\n2) Jugar 2 usuarios, cada usuario elige las posiciones de su flota por teclado, que sera contra la que va a jugar el otro usuario\n3) Estadisticas\n4) Abandonar el juego")
+    writeLines("Enter the number of an option you want to execute:
+               1) Single player game, reading the initial position of the fleet of an external file
+               2) Two player game, each user chooses the positions of his fleet by keyboard, which will be against which the other user will play
+               3) Statistics
+               4) Exit game")
+    
+    # Ask for user input and validate it. Keep ask for input until it is valid.
     seleccion <- inputUsuario()
     while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) {
-      print("Debe ingresar uno de los siguientes numeros 1,2,3 o 4")
+      print("You must enter one of the following numbers: 1,2,3 o 4")
       seleccion <- inputUsuario()
     }
     seleccion <- as.integer(seleccion)
