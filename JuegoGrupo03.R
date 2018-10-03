@@ -12,7 +12,7 @@ menu <- function()
   seleccion <- inputUsuario()
   while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
   {
-    print("You must enter one of the following numbers: 1,2,3 o 4")
+    print("Please enter one of the following numbers: 1,2,3 o 4")
     seleccion <- inputUsuario()
   }
 
@@ -49,7 +49,7 @@ menu <- function()
     seleccion <- inputUsuario()
     while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
     {
-      print("You must enter one of the following numbers: 1,2,3 o 4")
+      print("Please enter one of the following numbers: 1,2,3 o 4")
       seleccion <- inputUsuario()
     }
     seleccion <- as.integer(seleccion)
@@ -88,17 +88,20 @@ validarPosicion <- function(posicion)
     char3 <- substr(posicion, 3, 3)
     char4 <- substr(posicion, 4, 4)
   }
-  else if (nchar(posicion) == 5) {
+  else if (nchar(posicion) == 5) 
+  {
     char1 <- substr(posicion, 1, 2)
     char2 <- substr(posicion, 3, 3)
     char3 <- substr(posicion, 4, 4)
     char4 <- substr(posicion, 5, 5)
   }
-  else {
+  else 
+  {
     valido <- FALSE
   }
 
-  if (valido) {
+  if (valido) 
+  {
     if (!validarSiNro(char1) || !validarSiNro(char4)) # char1 and char4 must be numbers for the format to be correct
     {
       valido <- FALSE
@@ -554,7 +557,6 @@ boatsDontTouch <- function(input, table)
   {
     valid <- FALSE
   }
-
   return(valid)
 }
 
@@ -682,10 +684,10 @@ plays2 <- function(tablero1, tablero2)
   while (gameStatusOn) 
   {
     touched <- FALSE
-    print("Jugador 2, introduzca coordenada de disparo:")
+    print("Player 2, please enter shooting coordinate")
     input <- inputUsuario()
     while (!validateShot(input)) {
-      print("Asegurese de que el formato sea correcto e intente nuevamente:")
+      print("Make sure the format is valid and try again")
       input <- inputUsuario()
     }
     if (input == "R") 
@@ -755,7 +757,7 @@ singlePlayer <- function(tablero)
     mostrarTablero(tablero)
     if(gameFinished(tablero))
     {
-      print("You have sunk all boats. Congratulations.")
+      print("You have sunk all boats. Congratulations!")
       gameStatusOn = FALSE
     }
   }
@@ -905,37 +907,37 @@ detectSunkBoats <- function(table)
 validateEntireTable <- function(table)
 {
   valid = TRUE
-  for(x in 2:9)
+  for (x in 2:9)
   {
-    for(y in 2:9)
+    for (y in 2:9)
     {
-      if(table[x,y] != "b" && table[x,y] != "x")
+      if (table[x,y] != "b" && table[x,y] != "x")
       {
         valid = FALSE
       }
     }
   }
-  if(valid)
+  if (valid)
   {
-    for(x in 2:9)
+    for (x in 2:9)
     {
-      for(y in 2:9)
+      for (y in 2:9)
       {
-        if(table[x,y] == "x")
+        if (table[x,y] == "x")
         {
-          if(table[(x-1),y] == "x" && table[x,(y+1)] == "x")
+          if (table[(x-1),y] == "x" && table[x,(y+1)] == "x")
           {
             valid = FALSE
           }
-          if(table[(x-1),y] == "x" && table[x,(y-1)] == "x")
+          if (table[(x-1),y] == "x" && table[x,(y-1)] == "x")
           {
             valid = FALSE
           }
-          if(table[(x+1),y] == "x" && table[x,(y+1)] == "x")
+          if (table[(x+1),y] == "x" && table[x,(y+1)] == "x")
           {
             valid = FALSE
           }
-          if(table[(x+1),y] == "x" && table[x,(y-1)] == "x")
+          if (table[(x+1),y] == "x" && table[x,(y-1)] == "x")
           {
             valid = FALSE
           }
@@ -943,37 +945,37 @@ validateEntireTable <- function(table)
       }
     }
     
-    if(valid)
+    if (valid)
     {
       x = 1
-      for(y in 1:9)
+      for (y in 1:9)
       {
-        if(table[(x+1),y] == "x" && table[x,(y+1)] == "x" && table[x,y] == "x")
+        if (table[(x+1),y] == "x" && table[x,(y+1)] == "x" && table[x,y] == "x")
         {
           valid = FALSE
         }
       }
       x = 10
-      for(y in 1:9)
+      for (y in 1:9)
       {
-        if(table[(x-1),y] == "x" && table[x,(y+1)] == "x" && table[x,y] == "x")
+        if (table[(x-1),y] == "x" && table[x,(y+1)] == "x" && table[x,y] == "x")
         {
           valid = FALSE
         }
       }
-      if(table[1,1] == "x" && table[1,2] == "x" && table[2,1] == "x")
+      if (table[1,1] == "x" && table[1,2] == "x" && table[2,1] == "x")
       {
         valid = FALSE
       }
-      if(table[10,1] == "x" && table[9,1] == "x" && table[10,2] == "x")
+      if (table[10,1] == "x" && table[9,1] == "x" && table[10,2] == "x")
       {
         valid = FALSE
       }
-      if(table[1,10] == "x" && table[1,9] == "x" && table[2,10] == "x")
+      if (table[1,10] == "x" && table[1,9] == "x" && table[2,10] == "x")
       {
         valid = FALSE
       }
-      if(table[10,10] == "x" && table[10,9] == "x" && table[9,10] == "x")
+      if (table[10,10] == "x" && table[10,9] == "x" && table[9,10] == "x")
       {
         valid = FALSE
       }
@@ -1107,14 +1109,14 @@ countFlota<-function(table)
   return(flota)
 }
 
-gameFinished<-function(table)
+gameFinished <- function(table)
 {
   valid = TRUE
-  for(x in 1:10)
+  for (x in 1:10)
   {
-    for(y in 1:10)
+    for (y in 1:10)
     {
-      if(table[x,y] == "H" || table[x,y] == "x")
+      if (table[x,y] == "H" || table[x,y] == "x")
       {
         valid = FALSE
       }
@@ -1280,6 +1282,23 @@ opcion2 <- function() {
     input <- inputUsuario()
     validInput = TRUE
     
+    if (!validarPosicion(input))
+    {
+      validInput = FALSE
+    }
+    else if (!posicionDisponible(input, tablero2))
+    {
+      validInput = FALSE
+    }
+    else if (!tamanoDisponible(input, flota2))
+    {
+      validInput = FALSE
+    }
+    else if (!boatsDontTouch(input, tablero2))
+    {
+      validInput = FALSE
+    }
+    
     while (validInput == FALSE) 
     {
       if (!validarPosicion(input))
@@ -1287,20 +1306,20 @@ opcion2 <- function() {
         validInput = FALSE
         print("Make sure to enter a valid boat size in an empty position into the valid format. Please try again.")
       }
-      else if (!posicionDisponible(input, tablero2))
+      else if(!posicionDisponible(input, tablero2))
       {
         validInput = FALSE
-        print("Make sure the boats do not overlap or reach the end of the table. Please try again.")
+        print("Make sure the boats do not overlap or reach the edge of the board. Please try again.")
       }
       else if (!tamanoDisponible(input, flota2))
       {
         validInput = FALSE
         print("Boat size is not available. Please enter an available boat size.")
       }
-      else
+      else if (!boatsDontTouch(input, tablero2))
       {
         validInput = FALSE
-        print("Oops, the boats are not allowed to touch!")
+        print("Oops, the boats are not allowed to touch! Please choose another position.") # SOMEHOW BUGGED FOR VERTICAL, WHY?
       }
 
       input <- inputUsuario()
@@ -1324,6 +1343,5 @@ opcion3 <- function()
 {
   print("You're in option 3")
 }
-
 
 menu() # Calls the main menu
