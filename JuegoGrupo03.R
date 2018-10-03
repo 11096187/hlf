@@ -989,6 +989,7 @@ opcion1 <- function() {
     # SINGLE PLAYER
     print("Board successfully loaded.")
     mostrarTablero(tablero)
+    singlePlayer(tablero)
   }
 }
 
