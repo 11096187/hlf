@@ -10,7 +10,8 @@ menu <- function()
 
   # Ask for user input and validate it. Keep ask for input until it is valid.
   seleccion <- inputUsuario()
-  while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) {
+  while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
+  {
     print("You must enter one of the following numbers: 1,2,3 o 4")
     seleccion <- inputUsuario()
   }
@@ -19,16 +20,20 @@ menu <- function()
   seleccion <- as.integer(seleccion)
 
   # Once the input is validated, now the game will continue until the input is detected to be equals 4 ("Abandonar juego")
-  while (seleccion != 4) {
-    if (seleccion == 1) {
+  while (seleccion != 4) 
+  {
+    if (seleccion == 1) 
+    {
       # Option 1 detected. Call to function:
       opcion1()
     }
-    else if (seleccion == 2) {
+    else if (seleccion == 2) 
+    {
       # Option 2 detected. Call to function:
       opcion2()
     }
-    else if (seleccion == 3) {
+    else if (seleccion == 3) 
+    {
       # Option 3 detected. Call to function:
       opcion3()
     }
@@ -42,7 +47,8 @@ menu <- function()
     
     # Ask for user input and validate it. Keep ask for input until it is valid.
     seleccion <- inputUsuario()
-    while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) {
+    while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
+    {
       print("You must enter one of the following numbers: 1,2,3 o 4")
       seleccion <- inputUsuario()
     }
@@ -51,23 +57,27 @@ menu <- function()
 }
 
 # Every time we request an input from a user this function is called. It returns the input in string format.
-inputUsuario <- function() {
+inputUsuario <- function() 
+{
   nro <- readline()
   return(nro)
 }
 
 # This function receives a string and validates if it can be converted to a number (otherwishe it will come up with an "na"). Returns TRUE if valid and FALSE if invalid
-validarSiNro <- function(nro) {
+validarSiNro <- function(nro) 
+{
   valido <- TRUE
   nro <- suppressWarnings(as.numeric(nro))
-  if (is.na(nro)) {
+  if (is.na(nro)) 
+  {
     valido <- FALSE
   }
   return(valido)
 }
 
 # This function receives a string input and returns TRUE if the input is a valid position to insert a boat. Returns FALSE otherwise.
-validarPosicion <- function(posicion) {
+validarPosicion <- function(posicion) 
+{
   # Variable "valido" is initialized and set to TRUE
   valido <- TRUE
 
@@ -111,16 +121,20 @@ validarPosicion <- function(posicion) {
 
 # This function checks if there is no overlap between boats and if the coordinate following end of the boat is equal to "b" (as long as the boat does not reach the edge of the board).
 # Returns TRUE is valid and FALSE otherwise
-posicionDisponible <- function(posicion, tablero) {
+posicionDisponible <- function(posicion, tablero) 
+{
   valido <- TRUE
-  if (validarPosicion(posicion)) {
-    if (nchar(posicion) == 4) {
+  if (validarPosicion(posicion)) 
+  {
+    if (nchar(posicion) == 4) 
+    {
       char1 <- as.integer(substr(posicion, 1, 1))
       char2 <- substr(posicion, 2, 2)
       char3 <- substr(posicion, 3, 3)
       char4 <- as.integer(substr(posicion, 4, 4))
     }
-    else if (nchar(posicion) == 5) {
+    else if (nchar(posicion) == 5) 
+    {
       char1 <- as.integer(substr(posicion, 1, 2))
       char2 <- substr(posicion, 3, 3)
       char3 <- substr(posicion, 4, 4)
@@ -131,121 +145,158 @@ posicionDisponible <- function(posicion, tablero) {
     {
       # startPos will be 1 if column is A, 2 if B, 3 if C and so on
       startPos <- 1
-      while (char2 != columnas[startPos]) {
+      while (char2 != columnas[startPos]) 
+      {
         startPos <- startPos + 1
       }
-      if ((startPos + char4) <= 10) {
+      if ((startPos + char4) <= 10) 
+      {
         for (i in startPos:(startPos + char4))
         {
-          if (tablero[char1, i] != "b") {
+          if (tablero[char1, i] != "b") 
+          {
             valido <- FALSE
           }
         }
 
-        if (char1 == 1) {
-          if (tablero[(char1 + 1), i] != "b") {
+        if (char1 == 1) 
+        {
+          if (tablero[(char1 + 1), i] != "b") 
+          {
             valido <- FALSE
           }
         }
-        else if (char1 == 10) {
-          if (tablero[(char1 - 1), i] != "b") {
+        else if (char1 == 10) 
+        {
+          if (tablero[(char1 - 1), i] != "b") 
+          {
             valido <- FALSE
           }
         }
-        else {
-          if (tablero[(char1 + 1), i] != "b" || tablero[(char1 - 1), i] != "b") {
+        else 
+        {
+          if (tablero[(char1 + 1), i] != "b" || tablero[(char1 - 1), i] != "b") 
+          {
             valido <- FALSE
           }
         }
       }
-      else if ((startPos + char4 - 1) <= 10) {
+      else if ((startPos + char4 - 1) <= 10) 
+      {
         for (i in startPos:(startPos + char4 - 1))
         {
-          if (tablero[char1, i] != "b") {
+          if (tablero[char1, i] != "b") 
+          {
             valido <- FALSE
           }
 
-          if (char1 == 1) {
-            if (tablero[(char1 + 1), i] != "b") {
+          if (char1 == 1) 
+          {
+            if (tablero[(char1 + 1), i] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else if (char1 == 10) {
-            if (tablero[(char1 - 1), i] != "b") {
+          else if (char1 == 10) 
+          {
+            if (tablero[(char1 - 1), i] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else {
-            if (tablero[(char1 + 1), i] != "b" || tablero[(char1 - 1), i] != "b") {
+          else 
+          {
+            if (tablero[(char1 + 1), i] != "b" || tablero[(char1 - 1), i] != "b") 
+            {
               valido <- FALSE
             }
           }
         }
       }
-      else {
+      else 
+      {
         valido <- FALSE
       }
     }
     else # VERTICAL
     {
       startPos <- 1
-      while (char2 != columnas[startPos]) {
+      while (char2 != columnas[startPos]) 
+      {
         startPos <- startPos + 1
       }
-      if ((char1 + char4) <= 10) {
+      if ((char1 + char4) <= 10) 
+      {
         for (i in char1:(char1 + char4))
         {
-          if (tablero[i, startPos] != "b") {
+          if (tablero[i, startPos] != "b") 
+          {
             valido <- FALSE
           }
 
-          if (startPos == 1) {
-            if (tablero[i, (startPos + 1)] != "b") {
+          if (startPos == 1) 
+          {
+            if (tablero[i, (startPos + 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else if (startPos == 10) {
-            if (tablero[i, (startPos - 1)] != "b") {
+          else if (startPos == 10) 
+          {
+            if (tablero[i, (startPos - 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else {
-            if (tablero[i, (startPos + 1)] != "b" || tablero[i, (startPos - 1)] != "b") {
+          else 
+          {
+            if (tablero[i, (startPos + 1)] != "b" || tablero[i, (startPos - 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
         }
       }
-      else if ((char1 + char4 - 1) <= 10) {
+      else if ((char1 + char4 - 1) <= 10) 
+      {
         for (i in char1:(char1 + char4 - 1))
         {
-          if (tablero[i, startPos] != "b") {
+          if (tablero[i, startPos] != "b") 
+          {
             valido <- FALSE
           }
 
-          if (startPos == 1) {
-            if (tablero[i, (startPos + 1)] != "b") {
+          if (startPos == 1) 
+          {
+            if (tablero[i, (startPos + 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else if (startPos == 10) {
-            if (tablero[i, (startPos - 1)] != "b") {
+          else if (startPos == 10) 
+          {
+            if (tablero[i, (startPos - 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
-          else {
-            if (tablero[i, (startPos + 1)] != "b" || tablero[i, (startPos - 1)] != "b") {
+          else 
+          {
+            if (tablero[i, (startPos + 1)] != "b" || tablero[i, (startPos - 1)] != "b") 
+            {
               valido <- FALSE
             }
           }
         }
       }
-      else {
+      else 
+      {
         valido <- FALSE
       }
     }
   }
-  else {
+  else 
+  {
     valido <- FALSE
   }
   return(valido)
@@ -253,40 +304,54 @@ posicionDisponible <- function(posicion, tablero) {
 
 # Receives a boat the user is trying to add to the board and an array with 5 elements. Firts element is the number of boats that have already been places consisting of 5 coordinates, the second element shows boats with 4 elements and so on in decreasing order.
 # Max number of boats 5 coordinates long is 1 so, for instance, if the user wants to add a boat with a length of 5 and flota = c(1,...) then the size is not available and the function will return FALSE
-tamanoDisponible <- function(posicion, flota) {
+tamanoDisponible <- function(posicion, flota) 
+{
   valido <- TRUE
-  if (validarPosicion(posicion)) {
-    if (nchar(posicion) == 4) {
+  if (validarPosicion(posicion)) 
+  {
+    if (nchar(posicion) == 4) 
+    {
       char4 <- as.integer(substr(posicion, 4, 4))
     }
-    else if (nchar(posicion) == 5) {
+    else if (nchar(posicion) == 5) 
+    {
       char4 <- as.integer(substr(posicion, 5, 5))
     }
-    if (char4 > 5) {
+    if (char4 > 5) 
+    {
       valido <- FALSE
     }
-    else if (char4 == 5) {
-      if (flota[1] >= 1) {
+    else if (char4 == 5) 
+    {
+      if (flota[1] >= 1) 
+      {
         valido <- FALSE
       }
     }
-    else if (char4 == 4) {
-      if (flota[2] >= 2) {
+    else if (char4 == 4) 
+    {
+      if (flota[2] >= 2) 
+      {
         valido <- FALSE
       }
     }
-    else if (char4 == 3) {
-      if (flota[3] >= 2) {
+    else if (char4 == 3) 
+    {
+      if (flota[3] >= 2) 
+      {
         valido <- FALSE
       }
     }
-    else if (char4 == 2) {
-      if (flota[4] >= 3) {
+    else if (char4 == 2) 
+    {
+      if (flota[4] >= 3) 
+      {
         valido <- FALSE
       }
     }
     else {
-      if (flota[4] >= 4) {
+      if (flota[4] >= 4) 
+      {
         valido <- FALSE
       }
     }
@@ -298,14 +363,17 @@ tamanoDisponible <- function(posicion, flota) {
 }
 
 # This function receives a valid boat input and places it on the board. Returns the updated board.
-actualizarTablero <- function(posicion, tablero) {
-  if (nchar(posicion) == 4) {
+actualizarTablero <- function(posicion, tablero) 
+{
+  if (nchar(posicion) == 4) 
+  {
     char1 <- as.integer(substr(posicion, 1, 1))
     char2 <- substr(posicion, 2, 2)
     char3 <- substr(posicion, 3, 3)
     char4 <- as.integer(substr(posicion, 4, 4))
   }
-  else if (nchar(posicion) == 5) {
+  else if (nchar(posicion) == 5) 
+  {
     char1 <- as.integer(substr(posicion, 1, 2))
     char2 <- substr(posicion, 3, 3)
     char3 <- substr(posicion, 4, 4)
@@ -338,119 +406,152 @@ actualizarTablero <- function(posicion, tablero) {
 }
 
 # Returns the updated array "flota" which contains the number of boats of each size that have already been added.
-actualizarFlota <- function(input, flota) {
+actualizarFlota <- function(input, flota) 
+{
   char4 <- as.integer(substr(input, nchar(input), nchar(input)))
-  if (char4 == 5) {
+  if (char4 == 5) 
+  {
     flota[1] <- flota[1] + 1
   }
-  else if (char4 == 4) {
+  else if (char4 == 4) 
+  {
     flota[2] <- flota[2] + 1
   }
-  else if (char4 == 3) {
+  else if (char4 == 3) 
+  {
     flota[3] <- flota[3] + 1
   }
-  else if (char4 == 2) {
+  else if (char4 == 2) 
+  {
     flota[4] <- flota[4] + 1
   }
-  else {
+  else 
+  {
     flota[5] <- flota[5] + 1
   }
   return(flota)
 }
 
 # Prints the board it receives as parameter. Since we keep coordinates as numbers for the back-end of the game, in this function column names are turnes into letters for the player to see.
-mostrarTablero <- function(tablero) {
+mostrarTablero <- function(tablero) 
+{
   colnames(tablero) <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
   rownames(tablero) <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
   print(tablero)
 }
 
 # Function "posicionDisponible" already checks if spots starting from the first one of the boat do not touch another boat, but since it only does it "looking forward", we now check if the very first coordinate of the boat is also surrounded by water.
-boatsDontTouch <- function(input, table) {
+boatsDontTouch <- function(input, table) 
+{
   valid <- TRUE
-  if (validarPosicion(input) && posicionDisponible(input, table)) {
-    if (nchar(input) == 4) {
+  if (validarPosicion(input) && posicionDisponible(input, table)) 
+  {
+    if (nchar(input) == 4) 
+    {
       row <- as.integer(substr(input, 1, 1))
       col <- substr(input, 2, 2)
     }
-    else if (nchar(input) == 5) {
+    else if (nchar(input) == 5) 
+    {
       row <- as.integer(substr(input, 1, 2))
       col <- substr(input, 3, 3)
     }
     columns <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
     startPos <- 1
-    while (col != columns[startPos]) {
+    while (col != columns[startPos]) 
+    {
       startPos <- startPos + 1
     }
     col <- startPos
 
     # row = row_number & col = col_number
     # With a series of "if" clauses we channel the specific case for the first coordinate and make the necessary validations to make sure it is surrounded by water (not touching another boat).
-    if (row == 1) {
+    if (row == 1) 
+    {
       # First row
-      if (col == 1) {
+      if (col == 1) 
+      {
         # First row, first col
-        if (table[(row + 1), (col)] != "b" || table[(row), (col + 1)] != "b") {
+        if (table[(row + 1), (col)] != "b" || table[(row), (col + 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
-      else if (col == 10) {
+      else if (col == 10) 
+      {
         # First row, last col
-        if (table[(row + 1), (col)] != "b" || table[(row), (col - 1)] != "b") {
+        if (table[(row + 1), (col)] != "b" || table[(row), (col - 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
-      else {
+      else 
+      {
         # First row, middle col
-        if (table[(row + 1), (col)] != "b" || table[row, (col + 1)] != "b" || table[row, (col - 1)] != "b") {
+        if (table[(row + 1), (col)] != "b" || table[row, (col + 1)] != "b" || table[row, (col - 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
     }
-    else if (row == 10) {
+    else if (row == 10) 
+    {
       # Last row
-      if (col == 1) {
+      if (col == 1) 
+      {
         # Last row, first col
-        if (table[(row - 1), (col)] != "b" || table[(row), (col + 1)] != "b") {
+        if (table[(row - 1), (col)] != "b" || table[(row), (col + 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
-      else if (col == 10) {
+      else if (col == 10) 
+      {
         # Last row, last col
-        if (table[(row - 1), (col)] != "b" || table[(row), (col - 1)] != "b") {
+        if (table[(row - 1), (col)] != "b" || table[(row), (col - 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
-      else {
+      else 
+      {
         # Last row, middle col
         if (table[(row - 1), (col)] != "b" || table[row, (col + 1)] != "b" || table[row, (col - 1)] != "b") {
           valid <- FALSE
         }
       }
     }
-    else {
+    else 
+    {
       # Not first nor last row
-      if (col == 1) {
+      if (col == 1) 
+      {
         # First col, not first nor last row
-        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col + 1)] != "b") {
+        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col + 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
-      else if (col == 10) {
+      else if (col == 10) 
+      {
         # Last col, not first nor last row
-        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col - 1)] != "b") {
+        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col - 1)] != "b")
+        {
           valid <- FALSE
         }
       }
-      else {
+      else 
+      {
         # Not first or last row or col
-        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col - 1)] != "b" || table[row, (col + 1)] != "b") {
+        if (table[(row + 1), col] != "b" || table[(row - 1), col] != "b" || table[row, (col - 1)] != "b" || table[row, (col + 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
     }
   }
-  else {
+  else 
+  {
     valid <- FALSE
   }
 
@@ -458,29 +559,38 @@ boatsDontTouch <- function(input, table) {
 }
 
 # Checks if the input of a shot has the proper format
-validateShot <- function(input) {
+validateShot <- function(input) 
+{
   valid <- TRUE
-  if (nchar(input) == 3) {
+  if (nchar(input) == 3) 
+  {
     char1 <- substr(input, 1, 2)
     char2 <- substr(input, 3, 3)
   }
-  else if (nchar(input) == 2) {
+  else if (nchar(input) == 2) 
+  {
     char1 <- substr(input, 1, 1)
     char2 <- substr(input, 2, 2)
   }
-  else if (nchar(input) == 1) {
-    if (input != "R") {
+  else if (nchar(input) == 1) 
+  {
+    if (input != "R") 
+    {
       valid <- FALSE
     }
   }
-  else {
+  else 
+  {
     valid <- FALSE
   }
-  if (valid && input != "R") {
-    if (!validarSiNro(char1)) {
+  if (valid && input != "R") 
+  {
+    if (!validarSiNro(char1)) 
+    {
       valid <- FALSE
     }
-    else if (char2 != "A" && char2 != "B" && char2 != "C" && char2 != "D" && char2 != "E" && char2 != "F" && char2 != "G" && char2 != "H" && char2 != "I" && char2 != "J") {
+    else if (char2 != "A" && char2 != "B" && char2 != "C" && char2 != "D" && char2 != "E" && char2 != "F" && char2 != "G" && char2 != "H" && char2 != "I" && char2 != "J") 
+    {
       valid <- FALSE
     }
   }
@@ -489,25 +599,31 @@ validateShot <- function(input) {
 
 # Receives the coordinate of a shot
 # Returns c(0,0) if water ; c(11,11) if already H ; c(x,y) if x touched
-shot <- function(input, table) {
+shot <- function(input, table) 
+{
   result <- c(0, 0)
-  if (nchar(input) == 3) {
+  if (nchar(input) == 3) 
+  {
     x <- as.integer(substr(input, 1, 2))
     y_char <- substr(input, 3, 3)
   }
-  else if (nchar(input) == 2) {
+  else if (nchar(input) == 2) 
+  {
     x <- as.integer(substr(input, 1, 1))
     y_char <- substr(input, 2, 2)
   }
   y <- 1
   letters <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
-  while (letters[y] != y_char) {
+  while (letters[y] != y_char) 
+  {
     y <- y + 1
   }
-  if (table[x, y] == "x") {
+  if (table[x, y] == "x") 
+  {
     result <- c(x, y)
   }
-  else if (table[x, y] == "H" || table[x, y] == "*") {
+  else if (table[x, y] == "H" || table[x, y] == "*") 
+  {
     result <- c(11, 11)
   }
   return(result)
@@ -516,44 +632,55 @@ shot <- function(input, table) {
 # Function for player 1. While he/she does not enter a coordinate that is water, the player will continue shooting.
 # Receives both boards and, when input coordinate is water, calls function "player2" and sends both boards.
 # If a boat is touched or sunk, the board will be updated
-plays1 <- function(tablero1, tablero2) {
+plays1 <- function(tablero1, tablero2) 
+{
   gameStatusOn <- TRUE
-  while (gameStatusOn) {
+  while (gameStatusOn) 
+  {
     touched <- FALSE
     print("Jugador 1, introduzca coordenada de disparo:")
     input <- inputUsuario()
-    while (!validateShot(input)) {
+    while (!validateShot(input)) 
+    {
       print("Asegurese de que el formato sea correcto e intente nuevamente:")
       input <- inputUsuario()
     }
-    if (input == "R") {
+    if (input == "R") 
+    {
       gameStatusOn <- FALSE
     }
-    else {
+    else 
+    {
       outcome <- shot(input, tablero2)
-      if (outcome[1] > 0 && outcome[1] < 11) {
+      if (outcome[1] > 0 && outcome[1] < 11) 
+      {
         tablero2[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
-      else if (outcome[1] == 0) {
+      else if (outcome[1] == 0) 
+      {
         gameStatusOn <- FALSE
         print("AGUA")
       }
     }
-    if (touched) {
+    if (touched) 
+    {
       tablero2 <- detectSunkBoats(tablero2)
     }
     mostrarTablero(tablero2)
   }
-  if (input != "R") {
+  if (input != "R") 
+  {
     plays2(tablero1, tablero2)
   }
 }
 
 # Does what "player1" function does, but for player 2
-plays2 <- function(tablero1, tablero2) {
+plays2 <- function(tablero1, tablero2) 
+{
   gameStatusOn <- TRUE
-  while (gameStatusOn) {
+  while (gameStatusOn) 
+  {
     touched <- FALSE
     print("Jugador 2, introduzca coordenada de disparo:")
     input <- inputUsuario()
@@ -561,55 +688,68 @@ plays2 <- function(tablero1, tablero2) {
       print("Asegurese de que el formato sea correcto e intente nuevamente:")
       input <- inputUsuario()
     }
-    if (input == "R") {
+    if (input == "R") 
+    {
       gameStatusOn <- FALSE
     }
-    else {
+    else 
+    {
       outcome <- shot(input, tablero1)
       if (outcome[1] > 0 && outcome[1] < 11) {
         tablero1[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
-      else if (outcome[1] == 0) {
+      else if (outcome[1] == 0) 
+      {
         gameStatusOn <- FALSE
         print("AGUA")
       }
     }
-    if (touched) {
+    if (touched) 
+    {
       tablero1 <- detectSunkBoats(tablero1)
     }
     mostrarTablero(tablero1)
   }
-  if (input != "R") {
+  if (input != "R") 
+  {
     plays1(tablero1, tablero2)
   }
 }
 
 # Single player starts shooting
-singlePlayer <- function(tablero) {
+singlePlayer <- function(tablero) 
+{
   gameStatusOn <- TRUE
-  while (gameStatusOn) {
+  while (gameStatusOn) 
+  {
     touched <- FALSE
     print("Jugador, introduzca coordenada de disparo:")
     input <- inputUsuario()
-    while (!validateShot(input)) {
+    while (!validateShot(input)) 
+    {
       print("Asegurese de que el formato sea correcto e intente nuevamente:")
       input <- inputUsuario()
     }
-    if (input == "R") {
+    if (input == "R") 
+    {
       gameStatusOn <- FALSE
     }
-    else {
+    else 
+    {
       outcome <- shot(input, tablero)
-      if (outcome[1] > 0 && outcome[1] < 11) {
+      if (outcome[1] > 0 && outcome[1] < 11) 
+      {
         tablero[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
-      else if (outcome[1] == 0) {
+      else if (outcome[1] == 0) 
+      {
         print("AGUA")
       }
     }
-    if (touched) {
+    if (touched) 
+    {
       tablero <- detectSunkBoats(tablero)
     }
     mostrarTablero(tablero)
@@ -617,33 +757,41 @@ singlePlayer <- function(tablero) {
 }
 
 # Goes though the entire matrix looking for boats that are sunk but still marked as "H" and changes it to the "*" sign.
-detectSunkBoats <- function(table) {
+detectSunkBoats <- function(table) 
+{
   for (x in 1:10)
   {
     for (y in 1:10)
     {
       verticalCt <- 0
       horizontalCt <- 0
-      if (table[x, y] == "H") {
+      if (table[x, y] == "H") 
+      {
         valid <- TRUE
         isVertical <- TRUE
-        if (y > 1 && y < 10) {
-          if (table[x, (y - 1)] != "b" || table[x, (y + 1)] != "b") {
+        if (y > 1 && y < 10) 
+        {
+          if (table[x, (y - 1)] != "b" || table[x, (y + 1)] != "b") 
+          {
             isVertical <- FALSE
           }
         }
-        else if (y > 1) {
-          if (table[x, (y - 1)] != "b") {
+        else if (y > 1) 
+        {
+          if (table[x, (y - 1)] != "b") 
+          {
             isVertical <- FALSE
           }
         }
         else {
-          if (table[x, (y + 1)] != "b") {
+          if (table[x, (y + 1)] != "b") 
+          {
             isVertical <- FALSE
           }
         }
 
-        if (isVertical) {
+        if (isVertical) 
+        {
           ### VERTICAL ###
 
           allH <- TRUE
@@ -651,12 +799,16 @@ detectSunkBoats <- function(table) {
           # check upward
           i <- 0
           status <- TRUE
-          while (status & i <= 5) {
-            if ((x - i) >= 1) {
-              if (table[(x - i), y] == "b") {
+          while (status & i <= 5) 
+          {
+            if ((x - i) >= 1) 
+            {
+              if (table[(x - i), y] == "b") 
+              {
                 status <- FALSE
               }
-              else if (table[(x - i), y] == "x") {
+              else if (table[(x - i), y] == "x") 
+              {
                 status <- FALSE
                 allH <- FALSE
               }
@@ -667,12 +819,16 @@ detectSunkBoats <- function(table) {
           # check downward
           i <- 0
           status <- TRUE
-          while (status & i <= 5) {
-            if ((x + i) <= 10) {
-              if (table[(x + i), y] == "b") {
+          while (status & i <= 5) 
+          {
+            if ((x + i) <= 10)
+            {
+              if (table[(x + i), y] == "b") 
+              {
                 status <- FALSE
               }
-              else if (table[(x + i), y] == "x") {
+              else if (table[(x + i), y] == "x") 
+              {
                 status <- FALSE
                 allH <- FALSE
               }
@@ -680,11 +836,13 @@ detectSunkBoats <- function(table) {
             i <- i + 1
           }
 
-          if (allH) {
+          if (allH) 
+          {
             table[x, y] <- "*"
           }
         }
-        else {
+        else 
+        {
           ### HORIZONTAL ###
 
           allH <- TRUE
@@ -692,12 +850,16 @@ detectSunkBoats <- function(table) {
           # check left
           i <- 0
           status <- TRUE
-          while (status & i <= 5) {
-            if ((y - i) >= 1) {
-              if (table[x, (y - i)] == "b") {
+          while (status & i <= 5) 
+          {
+            if ((y - i) >= 1) 
+            {
+              if (table[x, (y - i)] == "b") 
+              {
                 status <- FALSE
               }
-              else if (table[x, (y - i)] == "x") {
+              else if (table[x, (y - i)] == "x") 
+              {
                 status <- FALSE
                 allH <- FALSE
               }
@@ -708,12 +870,16 @@ detectSunkBoats <- function(table) {
           # check downward
           i <- 0
           status <- TRUE
-          while (status & i <= 5) {
-            if ((y + i) <= 10) {
-              if (table[x, (y + i)] == "b") {
+          while (status & i <= 5) 
+          {
+            if ((y + i) <= 10) 
+            {
+              if (table[x, (y + i)] == "b") 
+              {
                 status <- FALSE
               }
-              else if (table[x, (y + i)] == "x") {
+              else if (table[x, (y + i)] == "x") 
+              {
                 status <- FALSE
                 allH <- FALSE
               }
@@ -1012,27 +1178,119 @@ opcion2 <- function() {
 
   ## PLAYER 1
   while (flota1[1] < 1 || flota1[2] < 2 || flota1[3] < 2 || flota1[4] < 3 || flota1[5] < 4) {
-    cat("\nTiene la siguiente cantidad de barcos disponibles:\n5 casillas: ", (1 - flota1[1]), "\n4 casillas: ", (2 - flota1[2]), "\n3 casillas: ", (2 - flota1[3]), "\n2 casillas: ", (3 - flota1[4]), "\n1 casilla: ", (4 - flota1[5]), "\n\n")
-    print("Usuario nro 1: ingrese la posicion de un barco")
+    cat("\nYou have the following boats available:",
+        "\n5 casillas: ", (1 - flota1[1]), 
+        "\n4 casillas: ", (2 - flota1[2]), 
+        "\n3 casillas: ", (2 - flota1[3]), 
+        "\n2 casillas: ", (3 - flota1[4]), 
+        "\n1 casilla:  ", (4 - flota1[5]), "\n\n")
+    
+    print("Player 1: please enter the position of a ship (eg. 1AV3)")
+    
     input <- inputUsuario()
-    while (!validarPosicion(input) || !tamanoDisponible(input, flota1) || !posicionDisponible(input, tablero1) || !boatsDontTouch(input, tablero1)) {
-      print("Asegurese ingresar en formato valido un tama??o de barco disponible en una posicion vacia. Intentelo nuevamente:")
-      input <- inputUsuario()
+    
+    validInput = TRUE
+    
+    if (!validarPosicion(input))
+    {
+      validInput = FALSE
     }
+    else if (!posicionDisponible(input, tablero1))
+    {
+      validInput = FALSE
+    }
+    else if (!tamanoDisponible(input, flota1))
+    {
+      validInput = FALSE
+    }
+    else if (!boatsDontTouch(input, tablero1))
+    {
+      validInput = FALSE
+    }
+
+    while (validInput == FALSE) 
+    {
+      if (!validarPosicion(input))
+      {
+       validInput = FALSE
+        print("Make sure to enter a valid boat size in an empty position into the valid format. Please try again.")
+      }
+      else if(!posicionDisponible(input, tablero1))
+      {
+        validInput = FALSE
+        print("Make sure the boats do not overlap or reach the edge of the board. Please try again.")
+      }
+      else if (!tamanoDisponible(input, flota1))
+      {
+        validInput = FALSE
+        print("Boat size is not available. Please enter an available boat size.")
+      }
+      else if (!boatsDontTouch(input, tablero1))
+      {
+        validInput = FALSE
+        print("Oops, the boats are not allowed to touch! Please choose another position.") # SOMEHOW BUGGED FOR VERTICAL, WHY?
+      }
+
+      input <- inputUsuario()
+
+      # press q to exit the program
+      if (input == "R")
+      {
+        stop("Exit game")
+      }
+    }
+    
     tablero1 <- actualizarTablero(input, tablero1)
     flota1 <- actualizarFlota(input, flota1)
     mostrarTablero(tablero1)
   }
 
   ## PLAYER 2
-  while (flota2[1] < 1 || flota2[2] < 2 || flota2[3] < 2 || flota2[4] < 3 || flota2[5] < 4) {
-    cat("\nTiene la siguiente cantidad de barcos disponibles:\n5 casillas: ", (1 - flota2[1]), "\n4 casillas: ", (2 - flota2[2]), "\n3 casillas: ", (2 - flota2[3]), "\n2 casillas: ", (3 - flota2[4]), "\n1 casilla: ", (4 - flota2[5]), "\n\n")
-    print("Usuario nro 2: ingrese la posicion de un barco")
+  while (flota2[1] < 1 || flota2[2] < 2 || flota2[3] < 2 || flota2[4] < 3 || flota2[5] < 4) 
+  {
+    cat("\nYou have the following boats available:",
+        "\n5 casillas: ", (1 - flota2[1]), 
+        "\n4 casillas: ", (2 - flota2[2]), 
+        "\n3 casillas: ", (2 - flota2[3]), 
+        "\n2 casillas: ", (3 - flota2[4]), 
+        "\n1 casilla: ", (4 - flota2[5]), "\n\n")
+    
+    print("Player 2: please enter the position of a ship (eg. 1AV3)")
     input <- inputUsuario()
-    while (!validarPosicion(input) || !posicionDisponible(input, tablero2) || !tamanoDisponible(input, flota2) || !boatsDontTouch(input, tablero2)) {
-      print("Asegurese ingresar en formato valido un tama??o de barco disponible en una posicion vacia. Intentelo nuevamente:")
+    validInput = TRUE
+    
+    while (validInput == FALSE) 
+    {
+      if (!validarPosicion(input))
+      {
+        validInput = FALSE
+        print("Make sure to enter a valid boat size in an empty position into the valid format. Please try again.")
+      }
+      else if (!posicionDisponible(input, tablero2))
+      {
+        validInput = FALSE
+        print("Make sure the boats do not overlap or reach the end of the table. Please try again.")
+      }
+      else if (!tamanoDisponible(input, flota2))
+      {
+        validInput = FALSE
+        print("Boat size is not available. Please enter an available boat size.")
+      }
+      else
+      {
+        validInput = FALSE
+        print("Oops, the boats are not allowed to touch!")
+      }
+
       input <- inputUsuario()
+      
+      # press q to exit the program
+      if (input == "R")
+      {
+        stop("Exit game")
+      }
     }
+    
     tablero2 <- actualizarTablero(input, tablero2)
     flota2 <- actualizarFlota(input, flota2)
     mostrarTablero(tablero2)
@@ -1041,7 +1299,8 @@ opcion2 <- function() {
   plays1(tablero1, tablero2)
 }
 
-opcion3 <- function() {
+opcion3 <- function() 
+{
   print("You're in option 3")
 }
 
