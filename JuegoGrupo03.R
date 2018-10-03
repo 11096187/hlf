@@ -9,33 +9,33 @@ menu <- function()
              4) Exit game")
 
   # Ask for user input and validate it. Keep ask for input until it is valid.
-  seleccion <- inputUsuario()
-  while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
+  selection <- inputUsuario()
+  while ((selection != 1 && selection != 2 && selection != 3 && selection != 4) || !validarSiNro(selection)) 
   {
     print("Please enter one of the following numbers: 1,2,3 o 4")
-    seleccion <- inputUsuario()
+    selection <- inputUsuario()
   }
 
-  # For user input we are calling a function "inputUsuario()" which works with readLine(). This last function returns the user's input as a string and that's why we now convert it to integer (note that validarSiNro(seleccion) has already checked the user entered a number)
-  seleccion <- as.integer(seleccion)
+  # For user input we are calling a function "inputUsuario()" which works with readLine(). This last function returns the user's input as a string and that's why we now convert it to integer (note that validarSiNro(selection) has already checked the user entered a number)
+  selection <- as.integer(selection)
 
   # Once the input is validated, now the game will continue until the input is detected to be equals 4 ("Abandonar juego")
-  while (seleccion != 4) 
+  while (selection != 4) 
   {
-    if (seleccion == 1) 
+    if (selection == 1) 
     {
       # Option 1 detected. Call to function:
-      opcion1()
+      option1()
     }
-    else if (seleccion == 2) 
+    else if (selection == 2) 
     {
       # Option 2 detected. Call to function:
-      opcion2()
+      option2()
     }
-    else if (seleccion == 3) 
+    else if (selection == 3) 
     {
       # Option 3 detected. Call to function:
-      opcion3()
+      option3()
     }
 
     # The following will appear after option 1, 2 or 3 have finished running. That is, users are directed back to the menu.
@@ -46,13 +46,13 @@ menu <- function()
                4) Exit game")
     
     # Ask for user input and validate it. Keep ask for input until it is valid.
-    seleccion <- inputUsuario()
-    while ((seleccion != 1 && seleccion != 2 && seleccion != 3 && seleccion != 4) || !validarSiNro(seleccion)) 
+    selection <- inputUsuario()
+    while ((selection != 1 && selection != 2 && selection != 3 && selection != 4) || !validarSiNro(selection)) 
     {
       print("Please enter one of the following numbers: 1,2,3 o 4")
-      seleccion <- inputUsuario()
+      selection <- inputUsuario()
     }
-    seleccion <- as.integer(seleccion)
+    selection <- as.integer(selection)
   }
 }
 
@@ -1005,7 +1005,6 @@ countFlota<-function(table)
         if(table[(x-1),y] == "b" && table[(x+1),y] == "b")
         {
           #HORIZONTAL
-          
           i = 1
           status = TRUE
           while((y+i) <= 12 && status)
@@ -1039,7 +1038,6 @@ countFlota<-function(table)
         else
         {
           #VERTICAL
-          
           i = 1
           status = TRUE
           while((x+i) <= 12 && status)
@@ -1125,7 +1123,7 @@ gameFinished <- function(table)
   return(valid)
 }
 
-opcion1 <- function() {
+option1 <- function() {
   if ("readxl" %in% rownames(installed.packages()) == FALSE) {
     install.packages("readxl")
   }
@@ -1181,7 +1179,7 @@ opcion1 <- function() {
   }
 }
 
-opcion2 <- function() {
+option2 <- function() {
   tablero1 <- matrix(c(1:100), nrow = 10, ncol = 10)
   tablero2 <- matrix(c(1:100), nrow = 10, ncol = 10)
   for (i in 1:10)
@@ -1339,7 +1337,7 @@ opcion2 <- function() {
   plays1(tablero1, tablero2)
 }
 
-opcion3 <- function() 
+option3 <- function() 
 {
   print("You're in option 3")
 }
