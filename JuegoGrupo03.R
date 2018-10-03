@@ -144,6 +144,7 @@ posicionDisponible <- function(posicion, tablero)
       char4 <- as.integer(substr(posicion, 5, 5))
     }
     columnas <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+    
     if (char3 == "H") # HORIZONTAL
     {
       # startPos will be 1 if column is A, 2 if B, 3 if C and so on
@@ -643,11 +644,11 @@ plays1 <- function(tablero1, tablero2)
   while (gameStatusOn) 
   {
     touched <- FALSE
-    print("Jugador 1, introduzca coordenada de disparo:")
+    print("Player 2, please enter shooting coordinate")
     input <- userInput()
     while (!validateShot(input)) 
     {
-      print("Asegurese de que el formato sea correcto e intente nuevamente:")
+      print("Make sure the format is valid and try again")
       input <- userInput()
     }
     if (input == "R") 
