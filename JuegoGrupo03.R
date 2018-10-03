@@ -9,14 +9,14 @@ menu <- function()
              4) Exit game")
 
   # Ask for user input and validate it. Keep ask for input until it is valid.
-  selection <- inputUsuario()
+  selection <- userInput()
   while ((selection != 1 && selection != 2 && selection != 3 && selection != 4) || !validarSiNro(selection)) 
   {
     print("Please enter one of the following numbers: 1,2,3 o 4")
-    selection <- inputUsuario()
+    selection <- userInput()
   }
 
-  # For user input we are calling a function "inputUsuario()" which works with readLine(). This last function returns the user's input as a string and that's why we now convert it to integer (note that validarSiNro(selection) has already checked the user entered a number)
+  # For user input we are calling a function "userInput()" which works with readLine(). This last function returns the user's input as a string and that's why we now convert it to integer (note that validarSiNro(selection) has already checked the user entered a number)
   selection <- as.integer(selection)
 
   # Once the input is validated, now the game will continue until the input is detected to be equals 4 ("Abandonar juego")
@@ -46,18 +46,18 @@ menu <- function()
                4) Exit game")
     
     # Ask for user input and validate it. Keep ask for input until it is valid.
-    selection <- inputUsuario()
+    selection <- userInput()
     while ((selection != 1 && selection != 2 && selection != 3 && selection != 4) || !validarSiNro(selection)) 
     {
       print("Please enter one of the following numbers: 1,2,3 o 4")
-      selection <- inputUsuario()
+      selection <- userInput()
     }
     selection <- as.integer(selection)
   }
 }
 
 # Every time we request an input from a user this function is called. It returns the input in string format.
-inputUsuario <- function() 
+userInput <- function() 
 {
   nro <- readline()
   return(nro)
@@ -641,11 +641,11 @@ plays1 <- function(tablero1, tablero2)
   {
     touched <- FALSE
     print("Jugador 1, introduzca coordenada de disparo:")
-    input <- inputUsuario()
+    input <- userInput()
     while (!validateShot(input)) 
     {
       print("Asegurese de que el formato sea correcto e intente nuevamente:")
-      input <- inputUsuario()
+      input <- userInput()
     }
     if (input == "R") 
     {
@@ -685,10 +685,10 @@ plays2 <- function(tablero1, tablero2)
   {
     touched <- FALSE
     print("Player 2, please enter shooting coordinate")
-    input <- inputUsuario()
+    input <- userInput()
     while (!validateShot(input)) {
       print("Make sure the format is valid and try again")
-      input <- inputUsuario()
+      input <- userInput()
     }
     if (input == "R") 
     {
@@ -727,11 +727,11 @@ singlePlayer <- function(tablero)
   {
     touched <- FALSE
     print("Jugador, introduzca coordenada de disparo:")
-    input <- inputUsuario()
+    input <- userInput()
     while (!validateShot(input)) 
     {
       print("Asegurese de que el formato sea correcto e intente nuevamente:")
-      input <- inputUsuario()
+      input <- userInput()
     }
     if (input == "R") 
     {
@@ -1208,7 +1208,7 @@ option2 <- function() {
     
     print("Player 1: please enter the position of a ship (eg. 1AV3)")
     
-    input <- inputUsuario()
+    input <- userInput()
     
     validInput = TRUE
     
@@ -1252,7 +1252,7 @@ option2 <- function() {
         print("Oops, the boats are not allowed to touch! Please choose another position.") # SOMEHOW BUGGED FOR VERTICAL, WHY?
       }
 
-      input <- inputUsuario()
+      input <- userInput()
 
       # press q to exit the program
       if (input == "R")
@@ -1277,7 +1277,7 @@ option2 <- function() {
         "\n1 casilla: ", (4 - flota2[5]), "\n\n")
     
     print("Player 2: please enter the position of a ship (eg. 1AV3)")
-    input <- inputUsuario()
+    input <- userInput()
     validInput = TRUE
     
     if (!validarPosicion(input))
@@ -1320,7 +1320,7 @@ option2 <- function() {
         print("Oops, the boats are not allowed to touch! Please choose another position.") # SOMEHOW BUGGED FOR VERTICAL, WHY?
       }
 
-      input <- inputUsuario()
+      input <- userInput()
       
       # press q to exit the program
       if (input == "R")
