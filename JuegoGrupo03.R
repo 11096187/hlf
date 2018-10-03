@@ -753,6 +753,11 @@ singlePlayer <- function(tablero)
       tablero <- detectSunkBoats(tablero)
     }
     mostrarTablero(tablero)
+    if(gameFinished(tablero))
+    {
+      print("You have sunk all boats. Congratulations.")
+      gameStatusOn = FALSE
+    }
   }
 }
 
@@ -1102,6 +1107,21 @@ countFlota<-function(table)
   return(flota)
 }
 
+gameFinished<-function(table)
+{
+  valid = TRUE
+  for(x in 1:10)
+  {
+    for(y in 1:10)
+    {
+      if(table[x,y] == "H" || table[x,y] == "x")
+      {
+        valid = FALSE
+      }
+    }
+  }
+  return(valid)
+}
 
 opcion1 <- function() {
   if ("readxl" %in% rownames(installed.packages()) == FALSE) {
@@ -1155,6 +1175,7 @@ opcion1 <- function() {
     # SINGLE PLAYER
     print("Board successfully loaded.")
     mostrarTablero(tablero)
+    singlePlayer(tablero)
   }
 }
 
