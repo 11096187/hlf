@@ -820,16 +820,18 @@ countFlota<-function(table)
   rownames(table) = 1:12
   colnames(table) = 1:12
   
+  flota = c(0,0,0,0,0)
+  
   for(x in 2:11)
   {
     for(y in 2:11)
     {
       if(table[x,y] == "x")
       {
+        ct = 1
         if(table[(x-1),y] == "b" && table[(x+1),y] == "b")
         {
           #HORIZONTAL
-          ct = 0
           
           i = 1
           status = TRUE
@@ -850,7 +852,26 @@ countFlota<-function(table)
           status = TRUE
           while((y-i) >= 0 && status)
           {
-            if(table[x,(y+i)] == "b")
+            if(table[x,(y-i)] == "b")
+            {
+              status = FALSE
+            }
+            else
+            {
+              i = i + 1
+            }
+          }
+          ct = ct + (i-1)
+        }
+        else
+        {
+          #VERTICAL
+          
+          i = 1
+          status = TRUE
+          while((x+i) <= 12 && status)
+          {
+            if(table[(x+i),y] == "b")
             {
               status = FALSE
             }
@@ -861,16 +882,58 @@ countFlota<-function(table)
           }
           ct = ct + (i-1)
           
-          print(ct)
+          i = 1
+          status = TRUE
+          while((x-i) >= 0 && status)
+          {
+            if(table[(x-i),y] == "b")
+            {
+              status = FALSE
+            }
+            else
+            {
+              i = i + 1
+            }
+          }
+          ct = ct + (i-1)
+        }
+        if(ct == 5)
+        {
+          flota[1] = flota[1] + 1
+        }
+        else if(ct == 4)
+        {
+          flota[2] = flota[2] + 1
+        }
+        else if(ct == 3)
+        {
+          flota[3] = flota[3] + 1
+        }
+        else if(ct == 2)
+        {
+          flota[4] = flota[4] + 1
+        }
+        else if(ct == 1)
+        {
+          flota[5] = flota[5] + 1
         }
         else
         {
-          #VERTICAL
-          
+          flota[1] = 999
         }
       }
     }
   }
+  flota[1] = flota[1] / 5
+  flota[2] = flota[2] / 4
+  flota[3] = flota[3] / 3
+  flota[4] = flota[4] / 2
+  flota[5] = flota[5] / 1
+  if(flota[1] != 1 || flota[2] != 2 || flota[3] != 2 || flota[4] != 3 || flota[5] != 4)
+  {
+    flota[1] = 999
+  }
+  return(flota)
 }
 
 
@@ -910,19 +973,22 @@ opcion1 <- function() {
   if(!validateEntireTable(tablero))
   {
     valid = FALSE
+    print("ERROR: Boats intersect each other. You will be redirected to the menu...")
   }
   else
   {
-    countFlota(tablero) #WORKING ON THIS FUNCTION (Julian)!
+    flota = countFlota(tablero)
+    if(flota[1] > 1)
+    {
+      valid = FALSE
+      print("ERROR: Boat sizes do not fit requirements. You will be redirected to the menu...")
+    }
   }
-
+  
   if (valid) {
     # SINGLE PLAYER
     print("Board successfully loaded.")
     mostrarTablero(tablero)
-  }
-  else {
-    print("There has been a problem with the board you have uploaded. You are going to be redirected back to the menu so that you can try the 2 player mode. You can otherwise correct the .xls file and return to option 1.")
   }
 }
 
