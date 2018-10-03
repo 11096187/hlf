@@ -1,3 +1,4 @@
+# menu of the game
 menu <- function() {
   # Shows menu options:
   writeLines("Ingrese el numero de la accion que desea realizar:\n1) Jugar 1 usuario, leyendo la posicion inicial de la flota de un fichero externo\n2) Jugar 2 usuarios, cada usuario elige las posiciones de su flota por teclado, que sera contra la que va a jugar el otro usuario\n3) Estadisticas\n4) Abandonar el juego")
