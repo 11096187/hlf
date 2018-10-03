@@ -386,7 +386,8 @@ actualizarTablero <- function(posicion, tablero)
   if (char3 == "H") # HORIZONTAL
   {
     startPos <- 1
-    while (char2 != columnas[startPos]) {
+    while (char2 != columnas[startPos]) 
+    {
       startPos <- startPos + 1
     }
     for (i in startPos:(startPos + char4 - 1))
@@ -397,7 +398,8 @@ actualizarTablero <- function(posicion, tablero)
   else # VERTICAL
   {
     startPos <- 1
-    while (char2 != columnas[startPos]) {
+    while (char2 != columnas[startPos]) 
+    {
       startPos <- startPos + 1
     }
     for (i in char1:(char1 + char4 - 1))
@@ -519,7 +521,8 @@ boatsDontTouch <- function(input, table)
       else 
       {
         # Last row, middle col
-        if (table[(row - 1), (col)] != "b" || table[row, (col + 1)] != "b" || table[row, (col - 1)] != "b") {
+        if (table[(row - 1), (col)] != "b" || table[row, (col + 1)] != "b" || table[row, (col - 1)] != "b") 
+        {
           valid <- FALSE
         }
       }
@@ -697,7 +700,8 @@ plays2 <- function(tablero1, tablero2)
     else 
     {
       outcome <- shot(input, tablero1)
-      if (outcome[1] > 0 && outcome[1] < 11) {
+      if (outcome[1] > 0 && outcome[1] < 11) 
+      {
         tablero1[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
@@ -1124,10 +1128,12 @@ gameFinished <- function(table)
 }
 
 option1 <- function() {
-  if ("readxl" %in% rownames(installed.packages()) == FALSE) {
+  if ("readxl" %in% rownames(installed.packages()) == FALSE) 
+  {
     install.packages("readxl")
   }
-  if ("readr" %in% rownames(installed.packages()) == FALSE) {
+  if ("readr" %in% rownames(installed.packages()) == FALSE) 
+  {
     install.packages("readr")
   }
   library(readxl)
@@ -1198,7 +1204,8 @@ option2 <- function() {
   mostrarTablero(tablero1)
 
   ## PLAYER 1
-  while (flota1[1] < 1 || flota1[2] < 2 || flota1[3] < 2 || flota1[4] < 3 || flota1[5] < 4) {
+  while (flota1[1] < 1 || flota1[2] < 2 || flota1[3] < 2 || flota1[4] < 3 || flota1[5] < 4) 
+  {
     cat("\nYou have the following boats available:",
         "\n5 casillas: ", (1 - flota1[1]), 
         "\n4 casillas: ", (2 - flota1[2]), 
