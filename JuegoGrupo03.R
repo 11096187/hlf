@@ -801,6 +801,68 @@ validateEntireTable <- function(table)
   return(valid)
 }
 
+countFlota<-function(table)
+{
+  table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
+  table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
+  table = rbind(table,c("b","b","b","b","b","b","b","b","b","b","b","b"))
+  table = rbind(c("b","b","b","b","b","b","b","b","b","b","b","b"),table)
+  rownames(table) = 1:12
+  colnames(table) = 1:12
+  
+  for(x in 2:11)
+  {
+    for(y in 2:11)
+    {
+      if(table[x,y] == "x")
+      {
+        if(table[(x-1),y] == "b" && table[(x+1),y] == "b")
+        {
+          #HORIZONTAL
+          ct = 0
+          
+          i = 1
+          status = TRUE
+          while((y+i) <= 12 && status)
+          {
+            if(table[x,(y+i)] == "b")
+            {
+              status = FALSE
+            }
+            else
+            {
+              i = i + 1
+            }
+          }
+          ct = ct + (i-1)
+          
+          i = 1
+          status = TRUE
+          while((y-i) >= 0 && status)
+          {
+            if(table[x,(y+i)] == "b")
+            {
+              status = FALSE
+            }
+            else
+            {
+              i = i + 1
+            }
+          }
+          ct = ct + (i-1)
+          
+          print(ct)
+        }
+        else
+        {
+          #VERTICAL
+          
+        }
+      }
+    }
+  }
+}
+
 
 opcion1 <- function() {
   if ("readxl" %in% rownames(installed.packages()) == FALSE) {
@@ -838,6 +900,10 @@ opcion1 <- function() {
   if(!validateEntireTable(tablero))
   {
     valid = FALSE
+  }
+  else
+  {
+    countFlota(tablero) #WORKING ON THIS FUNCTION (Julian)!
   }
 
   if (valid) {
