@@ -502,27 +502,27 @@ detectSunkBoats <- function(table)
   return(table)
 }
 
-validateEntireTable<-function(table)
+validateEntireTable <- function(table)
 {
   
   valid = TRUE
   
-  for(x in 1:5)
+  for (x in 1:5)
   {
-    for(y in 1:5)
+    for (y in 1:5)
     {
-      if(table[x,y] == "x" && table[(x+1),y] == "x"  && table[(x+2),y] == "x"  && table[(x+3),y] == "x"  && table[(x+4),y] == "x" && table[(x+5),y] == "x")
+      if (table[x,y] == "x" && table[(x+1),y] == "x"  && table[(x+2),y] == "x"  && table[(x+3),y] == "x"  && table[(x+4),y] == "x" && table[(x+5),y] == "x")
       {
         valid = FALSE 
       }
-      else if(table[x,y] == "x" && table[x,(y+1)] == "x" && table[x,(y+2)] == "x" && table[x,(y+3)] == "x" && table[x,(y+4)] == "x" && table[x,(y+5)] == "x")
+      else if (table[x,y] == "x" && table[x,(y+1)] == "x" && table[x,(y+2)] == "x" && table[x,(y+3)] == "x" && table[x,(y+4)] == "x" && table[x,(y+5)] == "x")
       {
         valid = FALSE
       }
     }
   }
   
-  if(valid)
+  if (valid)
   {
     table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
     table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
@@ -531,23 +531,23 @@ validateEntireTable<-function(table)
     rownames(table) = 1:12
     colnames(table) = 1:12
     
-    for(x in 2:11)
+    for (x in 2:11)
     {
-      for(y in 2:11)
+      for (y in 2:11)
       {
-        if(table[x,y] == "x" && table[(x+1),y] == "x" && table[x,(y+1)] == "x")
+        if (table[x,y] == "x" && table[(x+1),y] == "x" && table[x,(y+1)] == "x")
         {
           valid = FALSE
         }
-        else if(table[x,y] == "x" && table[(x-1),y] == "x" && table[x,(y+1)] == "x")
+        else if (table[x,y] == "x" && table[(x-1),y] == "x" && table[x,(y+1)] == "x")
         {
           valid = FALSE 
         }
-        else if(table[x,y] == "x" && table[(x+1),y] == "x" && table[x,(y-1)] == "x")
+        else if (table[x,y] == "x" && table[(x+1),y] == "x" && table[x,(y-1)] == "x")
         {
           valid = FALSE
         }
-        else if(table[x,y] == "x" && table[(x-1),y] == "x" && table[x,(y-1)] == "x")
+        else if (table[x,y] == "x" && table[(x-1),y] == "x" && table[x,(y-1)] == "x")
         {
           valid = FALSE
         }
@@ -557,7 +557,7 @@ validateEntireTable<-function(table)
   return(valid)
 }
 
-countFlota<-function(table)
+countFlota <- function(table)
 {
   table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
   table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
@@ -568,21 +568,21 @@ countFlota<-function(table)
   
   flota = c(0,0,0,0,0)
   
-  for(x in 2:11)
+  for (x in 2:11)
   {
-    for(y in 2:11)
+    for (y in 2:11)
     {
-      if(table[x,y] == "x")
+      if (table[x,y] == "x")
       {
         ct = 1
-        if(table[(x-1),y] == "b" && table[(x+1),y] == "b")
+        if (table[(x-1),y] == "b" && table[(x+1),y] == "b")
         {
           #HORIZONTAL
           i = 1
           status = TRUE
-          while((y+i) <= 12 && status)
+          while ((y+i) <= 12 && status)
           {
-            if(table[x,(y+i)] == "b")
+            if (table[x,(y+i)] == "b")
             {
               status = FALSE
             }
@@ -595,9 +595,9 @@ countFlota<-function(table)
           
           i = 1
           status = TRUE
-          while((y-i) >= 0 && status)
+          while ((y-i) >= 0 && status)
           {
-            if(table[x,(y-i)] == "b")
+            if (table[x,(y-i)] == "b")
             {
               status = FALSE
             }
@@ -613,9 +613,9 @@ countFlota<-function(table)
           #VERTICAL
           i = 1
           status = TRUE
-          while((x+i) <= 12 && status)
+          while ((x+i) <= 12 && status)
           {
-            if(table[(x+i),y] == "b")
+            if (table[(x+i),y] == "b")
             {
               status = FALSE
             }
@@ -628,9 +628,9 @@ countFlota<-function(table)
           
           i = 1
           status = TRUE
-          while((x-i) >= 0 && status)
+          while ((x-i) >= 0 && status)
           {
-            if(table[(x-i),y] == "b")
+            if (table[(x-i),y] == "b")
             {
               status = FALSE
             }
@@ -641,23 +641,23 @@ countFlota<-function(table)
           }
           ct = ct + (i-1)
         }
-        if(ct == 5)
+        if (ct == 5)
         {
           flota[1] = flota[1] + 1
         }
-        else if(ct == 4)
+        else if (ct == 4)
         {
           flota[2] = flota[2] + 1
         }
-        else if(ct == 3)
+        else if (ct == 3)
         {
           flota[3] = flota[3] + 1
         }
-        else if(ct == 2)
+        else if (ct == 2)
         {
           flota[4] = flota[4] + 1
         }
-        else if(ct == 1)
+        else if (ct == 1)
         {
           flota[5] = flota[5] + 1
         }
@@ -673,7 +673,7 @@ countFlota<-function(table)
   flota[3] = flota[3] / 3
   flota[4] = flota[4] / 2
   flota[5] = flota[5] / 1
-  if(flota[1] != 1 || flota[2] != 2 || flota[3] != 2 || flota[4] != 3 || flota[5] != 4)
+  if (flota[1] != 1 || flota[2] != 2 || flota[3] != 2 || flota[4] != 3 || flota[5] != 4)
   {
     flota[1] = 999
   }
@@ -696,7 +696,7 @@ gameFinished <- function(table)
   return(valid)
 }
 
-getPosition<-function(input)
+getPosition <- function(input)
 {
   valid = TRUE
   #SEPARATES INPUT INTO ELEMENTS
@@ -719,19 +719,19 @@ getPosition<-function(input)
     valid = FALSE
   }
   
-  if(valid)
+  if (valid)
   {
-    if(!is.na(char1) && !is.na(char2) && !is.na(char3) && !is.na(char4))
+    if (!is.na(char1) && !is.na(char2) && !is.na(char3) && !is.na(char4))
     {
-      if(char1 >= 1 && char1 <= 10)
+      if (char1 >= 1 && char1 <= 10)
       {
         #VALID ROW
         columns = c("A","B","C","D","E","F","G","H","I","J") 
         letter = 1
         found = FALSE
-        while(letter <= 10 && !found)
+        while (letter <= 10 && !found)
         {
-          if(char2 == columns[letter])
+          if (char2 == columns[letter])
           {
             found = TRUE
           }
@@ -740,13 +740,13 @@ getPosition<-function(input)
             letter = letter + 1
           }
         }
-        if(letter <= 10)
+        if (letter <= 10)
         {
           #VALID ROW AND VALID COLUMN
-          if(char3 == "H" || char3 == "V")
+          if (char3 == "H" || char3 == "V")
           {
             #VALID ROW, COLUMN AND DIRECTION
-            if(char4 < 1 || char4 > 5)
+            if (char4 < 1 || char4 > 5)
             {
               valid = FALSE
             }
@@ -772,7 +772,7 @@ getPosition<-function(input)
     }
   }
   
-  if(!valid)
+  if (!valid)
   {
     result = c(0,0,0,0)
   }
@@ -783,7 +783,7 @@ getPosition<-function(input)
   return(result)
 }
 
-noOverlap<-function(table,position)
+noOverlap <- function (table,position)
 {
   valid = TRUE
   
@@ -794,21 +794,21 @@ noOverlap<-function(table,position)
   rownames(table) = 1:12
   colnames(table) = 1:12
   
-  if(position[3] == "H")
+  if (position[3] == "H")
   {
     x = (as.integer(position[1])+1)
-    for(y in (as.integer(position[2])+1):(as.integer(position[2])+as.integer(position[4])))
+    for (y in (as.integer(position[2])+1):(as.integer(position[2])+as.integer(position[4])))
     {
-      if(table[x,y] != "b" || table[(x+1),y] != "b" || table[(x-1),y] != "b")
+      if (table[x,y] != "b" || table[(x+1),y] != "b" || table[(x-1),y] != "b")
       {
         valid = FALSE
       }
     }
-    if(valid)
+    if (valid)
     {
       y = (as.integer(position[2])+1)
       length = as.integer(position[4])
-      if(table[x,(y-1)] != "b" || table[x,(y+length)] != "b")
+      if (table[x,(y-1)] != "b" || table[x,(y+length)] != "b")
       {
         valid = FALSE
       }
@@ -817,18 +817,18 @@ noOverlap<-function(table,position)
   else
   {
     y = (as.integer(position[2])+1)
-    for(x in (as.integer(position[1])+1):(as.integer(position[1])+as.integer(position[4])))
+    for (x in (as.integer(position[1])+1):(as.integer(position[1])+as.integer(position[4])))
     {
-      if(table[x,y] != "b" || table[x,(y+1)] != "b" || table[x,(y-1)] != "b")
+      if (table[x,y] != "b" || table[x,(y+1)] != "b" || table[x,(y-1)] != "b")
       {
         valid = FALSE
       }
     }
-    if(valid)
+    if (valid)
     {
       x = (as.integer(position[1])+1)
       length = as.integer(position[4])
-      if(table[(x-1),y] != "b" || table[(x+length),y] != "b")
+      if (table[(x-1),y] != "b" || table[(x+length),y] != "b")
       {
         valid = FALSE
       }
@@ -855,7 +855,7 @@ option1 <- function() {
   
   valid = TRUE
   l = 11
-  if(length(file) == 110)
+  if (length(file) == 110)
   {
     tablero <- matrix(c(1:100), nrow = 10, ncol = 10)
     for (i in 1:10)
@@ -872,7 +872,7 @@ option1 <- function() {
     valid = FALSE
   }
   
-  if(!validateEntireTable(tablero))
+  if (!validateEntireTable(tablero))
   {
     valid = FALSE
     print("ERROR: Boats intersect each other. You will be redirected to the menu...")
@@ -880,7 +880,7 @@ option1 <- function() {
   else
   {
     flota = countFlota(tablero)
-    if(flota[1] > 1)
+    if (flota[1] > 1)
     {
       valid = FALSE
       print("ERROR: Boat sizes do not fit requirements. You will be redirected to the menu...")
@@ -932,15 +932,15 @@ option2 <- function() {
     
     validInput = TRUE
     position = getPosition(input)
-    if(position[1] == 0)
+    if (position[1] == 0)
     {
       validInput = FALSE
-      if(input != "R")
+      if (input != "R")
       {
         print("Make sure the format of the input is correct and try again:") 
       }
     }
-    else if((position[4] == 5 && flota1[1] == 1) || (position[4] == 4 && flota1[2] == 2) || (position[4] == 3 && flota1[3] == 2) || (position[4] == 2 && flota1[4] == 3) || (position[4] == 1 && flota1[5] == 4))
+    else if ((position[4] == 5 && flota1[1] == 1) || (position[4] == 4 && flota1[2] == 2) || (position[4] == 3 && flota1[3] == 2) || (position[4] == 2 && flota1[4] == 3) || (position[4] == 1 && flota1[5] == 4))
     {
       validInput = FALSE
       print("Boat size is not available. Please enter an available boat size:")
@@ -948,18 +948,18 @@ option2 <- function() {
     else
     {
       varValid = TRUE
-      if(position[3] == "H")
+      if (position[3] == "H")
       {
-        if((as.integer(position[2])+as.integer(position[4])) > 11)
+        if ((as.integer(position[2])+as.integer(position[4])) > 11)
         {
           varValid = FALSE
           validInput = FALSE
           print("The boat you entered does not fit in the board. Please enter a new one:")
         }
       }
-      else if(position[3] == "V")
+      else if (position[3] == "V")
       {
-        if((as.integer(position[1])+as.integer(position[4])) > 11)
+        if ((as.integer(position[1])+as.integer(position[4])) > 11)
         {
           varValid = FALSE
           validInput = FALSE
@@ -967,30 +967,30 @@ option2 <- function() {
         }
       }
       
-      if(varValid)
+      if (varValid)
       {
-        if(!noOverlap(tablero1,position))
+        if (!noOverlap(tablero1,position))
         {
           validInput = FALSE
           print("Oops, the boats are not allowed to touch or overlap! Please choose another position:")
         }
       }
     }
-    while(!validInput && input != "R")
+    while (!validInput && input != "R")
     {
       input <- userInput()
       
       validInput = TRUE
       position = getPosition(input)
-      if(position[1] == 0)
+      if (position[1] == 0)
       {
         validInput = FALSE
-        if(input != "R")
+        if (input != "R")
         {
           print("Make sure the format of the input is correct and try again:") 
         }
       }
-      else if((position[4] == 5 && flota1[1] == 1) || (position[4] == 4 && flota1[2] == 2) || (position[4] == 3 && flota1[3] == 2) || (position[4] == 2 && flota1[4] == 3) || (position[4] == 1 && flota1[5] == 4))
+      else if ((position[4] == 5 && flota1[1] == 1) || (position[4] == 4 && flota1[2] == 2) || (position[4] == 3 && flota1[3] == 2) || (position[4] == 2 && flota1[4] == 3) || (position[4] == 1 && flota1[5] == 4))
       {
         validInput = FALSE
         print("Boat size is not available. Please enter an available boat size:")
@@ -998,18 +998,18 @@ option2 <- function() {
       else
       {
         varValid = TRUE
-        if(position[3] == "H")
+        if (position[3] == "H")
         {
-          if((as.integer(position[2])+as.integer(position[4])) > 11)
+          if ((as.integer(position[2])+as.integer(position[4])) > 11)
           {
             varValid = FALSE
             validInput = FALSE
             print("The boat you entered does not fit in the board. Please enter a new one:")
           }
         }
-        else if(position[3] == "V")
+        else if (position[3] == "V")
         {
-          if((as.integer(position[1])+as.integer(position[4])) > 11)
+          if ((as.integer(position[1])+as.integer(position[4])) > 11)
           {
             varValid = FALSE
             validInput = FALSE
@@ -1017,9 +1017,9 @@ option2 <- function() {
           }
         }
         
-        if(varValid)
+        if (varValid)
         {
-          if(!noOverlap(tablero1,position))
+          if (!noOverlap(tablero1,position))
           {
             validInput = FALSE
             print("Oops, the boats are not allowed to touch or overlap! Please choose another position:")
@@ -1028,7 +1028,7 @@ option2 <- function() {
       }
     }
     
-    if(input != "R")
+    if (input != "R")
     {
       tablero1 <- actualizarTablero(input, tablero1)
       flota1 <- actualizarFlota(input, flota1)
@@ -1040,7 +1040,7 @@ option2 <- function() {
     }
   }
   
-  if(input != "R")
+  if (input != "R")
   {
     ## PLAYER 2
     while ((flota2[1] < 1 || flota2[2] < 2 || flota2[3] < 2 || flota2[4] < 3 || flota2[5] < 4) && continueInOption2) 
@@ -1058,15 +1058,15 @@ option2 <- function() {
       
       validInput = TRUE
       position = getPosition(input)
-      if(position[1] == 0)
+      if (position[1] == 0)
       {
         validInput = FALSE
-        if(input != "R")
+        if (input != "R")
         {
           print("Make sure the format of the input is correct and try again:") 
         }
       }
-      else if((position[4] == 5 && flota2[1] == 1) || (position[4] == 4 && flota2[2] == 2) || (position[4] == 3 && flota2[3] == 2) || (position[4] == 2 && flota2[4] == 3) || (position[4] == 1 && flota2[5] == 4))
+      else if ((position[4] == 5 && flota2[1] == 1) || (position[4] == 4 && flota2[2] == 2) || (position[4] == 3 && flota2[3] == 2) || (position[4] == 2 && flota2[4] == 3) || (position[4] == 1 && flota2[5] == 4))
       {
         validInput = FALSE
         print("Boat size is not available. Please enter an available boat size:")
@@ -1074,18 +1074,18 @@ option2 <- function() {
       else
       {
         varValid = TRUE
-        if(position[3] == "H")
+        if (position[3] == "H")
         {
-          if((as.integer(position[2])+as.integer(position[4])) > 11)
+          if ((as.integer(position[2])+as.integer(position[4])) > 11)
           {
             varValid = FALSE
             validInput = FALSE
             print("The boat you entered does not fit in the board. Please enter a new one:")
           }
         }
-        else if(position[3] == "V")
+        else if (position[3] == "V")
         {
-          if((as.integer(position[1])+as.integer(position[4])) > 11)
+          if ((as.integer(position[1])+as.integer(position[4])) > 11)
           {
             varValid = FALSE
             validInput = FALSE
@@ -1093,30 +1093,30 @@ option2 <- function() {
           }
         }
         
-        if(varValid)
+        if (varValid)
         {
-          if(!noOverlap(tablero2,position))
+          if (!noOverlap(tablero2,position))
           {
             validInput = FALSE
             print("Oops, the boats are not allowed to touch or overlap! Please choose another position:")
           }
         }
       }
-      while(!validInput && input != "R")
+      while (!validInput && input != "R")
       {
         input <- userInput()
         
         validInput = TRUE
         position = getPosition(input)
-        if(position[1] == 0)
+        if (position[1] == 0)
         {
           validInput = FALSE
-          if(input != "R")
+          if (input != "R")
           {
             print("Make sure the format of the input is correct and try again:") 
           }
         }
-        else if((position[4] == 5 && flota2[1] == 1) || (position[4] == 4 && flota2[2] == 2) || (position[4] == 3 && flota2[3] == 2) || (position[4] == 2 && flota2[4] == 3) || (position[4] == 1 && flota2[5] == 4))
+        else if ((position[4] == 5 && flota2[1] == 1) || (position[4] == 4 && flota2[2] == 2) || (position[4] == 3 && flota2[3] == 2) || (position[4] == 2 && flota2[4] == 3) || (position[4] == 1 && flota2[5] == 4))
         {
           validInput = FALSE
           print("Boat size is not available. Please enter an available boat size:")
@@ -1124,18 +1124,18 @@ option2 <- function() {
         else
         {
           varValid = TRUE
-          if(position[3] == "H")
+          if (position[3] == "H")
           {
-            if((as.integer(position[2])+as.integer(position[4])) > 11)
+            if ((as.integer(position[2])+as.integer(position[4])) > 11)
             {
               varValid = FALSE
               validInput = FALSE
               print("The boat you entered does not fit in the board. Please enter a new one:")
             }
           }
-          else if(position[3] == "V")
+          else if (position[3] == "V")
           {
-            if((as.integer(position[1])+as.integer(position[4])) > 11)
+            if ((as.integer(position[1])+as.integer(position[4])) > 11)
             {
               varValid = FALSE
               validInput = FALSE
@@ -1143,9 +1143,9 @@ option2 <- function() {
             }
           }
           
-          if(varValid)
+          if (varValid)
           {
-            if(!noOverlap(tablero2,position))
+            if (!noOverlap(tablero2,position))
             {
               validInput = FALSE
               print("Oops, the boats are not allowed to touch or overlap! Please choose another position:")
@@ -1154,7 +1154,7 @@ option2 <- function() {
         }
       }
       
-      if(input != "R")
+      if (input != "R")
       {
         tablero2 <- actualizarTablero(input, tablero2)
         flota2 <- actualizarFlota(input, flota2)
@@ -1167,7 +1167,7 @@ option2 <- function() {
     }
   }
   
-  if(input != "R")
+  if (input != "R")
   {
     plays1(tablero1, tablero2) 
   }
