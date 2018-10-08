@@ -2,11 +2,11 @@
 menu <- function() 
 {
   # Show menu options:
-  writeLines("Enter the number of an option you want to execute:
-             1) Single player game, reading the initial position of the fleet of an external file
-             2) Two player game, each user chooses the positions of his fleet by keyboard, which will be against which the other user will play
-             3) Statistics
-             4) Exit game")
+  writeLines("Welcome to the Battleship game! Enter the number of an option you want to execute:
+  1) Single player game, reading the initial position of the fleet of an external file
+  2) Two player game, each user chooses the positions of his fleet by keyboard, which will be against which the other user will play
+  3) Statistics
+  4) Exit game")
   
   # Ask for user input and validate it. Keep ask for input until it is valid.
   selection <- userInput()
@@ -920,13 +920,13 @@ option2 <- function() {
   while ((flota1[1] < 1 || flota1[2] < 2 || flota1[3] < 2 || flota1[4] < 3 || flota1[5] < 4) && continueInOption2) 
   {
     cat("\nYou have the following boats available:",
-        "\n5 casillas: ", (1 - flota1[1]), 
-        "\n4 casillas: ", (2 - flota1[2]), 
-        "\n3 casillas: ", (2 - flota1[3]), 
-        "\n2 casillas: ", (3 - flota1[4]), 
-        "\n1 casilla:  ", (4 - flota1[5]), "\n\n")
+        "\n5 squares: ", (1 - flota1[1]), 
+        "\n4 squares: ", (2 - flota1[2]), 
+        "\n3 squares: ", (2 - flota1[3]), 
+        "\n2 squares: ", (3 - flota1[4]), 
+        "\n1 square:  ", (4 - flota1[5]), "\n\n")
     
-    print("Player 1: please enter the position of a ship (eg. 1AV3)")
+    print("Player 1: please enter the position of a ship (eg. 1AV3):")
     
     input <- userInput()
     
@@ -1046,13 +1046,13 @@ option2 <- function() {
     while ((flota2[1] < 1 || flota2[2] < 2 || flota2[3] < 2 || flota2[4] < 3 || flota2[5] < 4) && continueInOption2) 
     {
       cat("\nYou have the following boats available:",
-          "\n5 casillas: ", (1 - flota2[1]), 
-          "\n4 casillas: ", (2 - flota2[2]), 
-          "\n3 casillas: ", (2 - flota2[3]), 
-          "\n2 casillas: ", (3 - flota2[4]), 
-          "\n1 casilla:  ", (4 - flota2[5]), "\n\n")
+          "\n5 squares: ", (1 - flota2[1]), 
+          "\n4 squares: ", (2 - flota2[2]), 
+          "\n3 squares: ", (2 - flota2[3]), 
+          "\n2 squares: ", (3 - flota2[4]), 
+          "\n1 square:  ", (4 - flota2[5]), "\n\n")
       
-      print("Player 2: please enter the position of a ship (eg. 1AV3)")
+      print("Player 2: please enter the position of a ship (eg. 1AV3):")
       
       input <- userInput()
       
