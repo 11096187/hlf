@@ -1,4 +1,4 @@
-# menu of the game
+# Menu of the game
 menu <- function() 
 {
   # Show menu options:
