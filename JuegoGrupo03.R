@@ -1,3 +1,10 @@
+# position 1 is single player games, position 2 is two player games
+games = c(0,0)
+
+# position 1 is for player 1, position 2 for player 2
+hits = c(0,0)
+failures = c(0,0)
+
 # Menu of the game
 menu <- function() 
 {
@@ -1184,10 +1191,11 @@ option3 <- function()
   # - 2 player games
   
   # For each player
-  # - Shots
+  # - Shots = hits + failures
   # - Hits
   # - Failures
   # - Percentages
+  #   - hit rate = (hits / (failures + hits))
 }
 
 menu() # Calls the main menu
