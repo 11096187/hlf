@@ -1176,6 +1176,16 @@ option2 <- function() {
 option3 <- function() 
 {
   print("You're in option 3")
+  
+  # TO DO
+  # Number of games played
+  # - Single player games
+  # - 2 player games
+  # For each player
+  # - Shots
+  # - Hits
+  # - Failures
+  # - Percentages
 }
 
 menu() # Calls the main menu
