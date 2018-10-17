@@ -1,11 +1,11 @@
-globalSinglePlayer = TRUE
+globalSinglePlayer <- TRUE
 
 # position 1 is single player games, position 2 is two player games
-games = c(0,0)
+games <- c(0,0)
 
 # position 1 is for player 1, position 2 for player 2
-hits = c(0,0)
-failures = c(0,0)
+hits <- c(0,0)
+failures <- c(0,0)
 
 # Menu of the game
 menu <- function() 
@@ -31,10 +31,6 @@ menu <- function()
   # Once the input is validated, now the game will continue until the input is detected to be equals 4 ("Abandonar juego")
   while (selection != 4) 
   {
-    hits[1] <<- 0
-    hits[2] <<- 0
-    failures[1] <<- 0
-    failures[2] <<- 0
     if (selection == 1) 
     {
       # Option 1 detected. Call to function:
@@ -912,6 +908,8 @@ option1 <- function() {
     mostrarTablero(tablero)
     games[1] <<- games[1] + 1
     globalSinglePlayer <<- TRUE
+    hits[1] <<- 0
+    failures[1] <<- 0
     singlePlayer(tablero)
   }
 }
@@ -1192,6 +1190,10 @@ option2 <- function() {
   {
     games[2] <<- games[2] + 1
     globalSinglePlayer <<- FALSE
+    hits[1] <<- 0
+    hits[2] <<- 0
+    failures[1] <<- 0
+    failures[2] <<- 0
     plays1(tablero1, tablero2) 
   }
 }
@@ -1200,7 +1202,10 @@ option3 <- function()
 {
   print("You're in option 3")
   
-  
+  print(games)
+  print(hits)
+  print(failures)
+  print(globalSinglePlayer)
   
   
   # TO DO
