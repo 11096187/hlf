@@ -1,3 +1,5 @@
+globalSinglePlayer = TRUE
+
 # position 1 is single player games, position 2 is two player games
 games = c(0,0)
 
@@ -29,6 +31,10 @@ menu <- function()
   # Once the input is validated, now the game will continue until the input is detected to be equals 4 ("Abandonar juego")
   while (selection != 4) 
   {
+    hits[1] <<- 0
+    hits[2] <<- 0
+    failures[1] <<- 0
+    failures[2] <<- 0
     if (selection == 1) 
     {
       # Option 1 detected. Call to function:
@@ -260,12 +266,14 @@ plays1 <- function(tablero1, tablero2)
       outcome <- shot(input, tablero2)
       if (outcome[1] > 0 && outcome[1] < 11) 
       {
+        hits[1] <<- hits[1] + 1
         tablero2[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
       else if (outcome[1] == 0) 
       {
         gameStatusOn <- FALSE
+        failures[1] <<- failures[1] + 1
         print("AGUA")
       }
     }
@@ -304,11 +312,13 @@ plays2 <- function(tablero1, tablero2)
       if (outcome[1] > 0 && outcome[1] < 11) 
       {
         tablero1[outcome[1], outcome[2]] <- "H"
+        hits[2] <<- hits[2] + 1
         touched <- TRUE
       }
       else if (outcome[1] == 0) 
       {
         gameStatusOn <- FALSE
+        failures[2] <<- failures[2] + 1
         print("AGUA")
       }
     }
@@ -347,11 +357,13 @@ singlePlayer <- function(tablero)
       outcome <- shot(input, tablero)
       if (outcome[1] > 0 && outcome[1] < 11) 
       {
+        hits[1] <<- hits[1] + 1
         tablero[outcome[1], outcome[2]] <- "H"
         touched <- TRUE
       }
       else if (outcome[1] == 0) 
       {
+        failures[1] <<- failures[1] + 1
         print("AGUA")
       }
     }
@@ -898,6 +910,8 @@ option1 <- function() {
     # SINGLE PLAYER
     print("Board successfully loaded.")
     mostrarTablero(tablero)
+    games[1] <<- games[1] + 1
+    globalSinglePlayer <<- TRUE
     singlePlayer(tablero)
   }
 }
@@ -1176,6 +1190,8 @@ option2 <- function() {
   
   if (input != "R")
   {
+    games[2] <<- games[2] + 1
+    globalSinglePlayer <<- FALSE
     plays1(tablero1, tablero2) 
   }
 }
@@ -1183,6 +1199,9 @@ option2 <- function() {
 option3 <- function() 
 {
   print("You're in option 3")
+  
+  
+  
   
   # TO DO
   
