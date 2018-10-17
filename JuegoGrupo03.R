@@ -8,7 +8,7 @@ menu <- function()
   3) Statistics
   4) Exit game")
   
-  # Ask for user input and validate it. Keep ask for input until it is valid.
+  # Ask for user input and validate it. Keep asking for input until it is valid.
   selection <- userInput()
   while ((selection != 1 && selection != 2 && selection != 3 && selection != 4) || !validarSiNro(selection)) 
   {
