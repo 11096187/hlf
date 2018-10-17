@@ -246,7 +246,7 @@ plays1 <- function(tablero1, tablero2)
   while (gameStatusOn) 
   {
     touched <- FALSE
-    print("Player 2, please enter shooting coordinate")
+    print("Player 1, please enter shooting coordinate")
     input <- userInput()
     while (!validateShot(input)) 
     {
@@ -370,7 +370,7 @@ singlePlayer <- function(tablero)
     mostrarTablero(tablero)
     if(gameFinished(tablero))
     {
-      print("You have sunk all boats. Congratulations!")
+      cat("\nYou have sunk all boats. Congratulations!\n\n")
       gameStatusOn = FALSE
     }
   }
@@ -1203,11 +1203,11 @@ option3 <- function()
   cat("Number of games played: \n-One player: ",games[1],"\nTwo players: ",games[2],"\n\n")
   if(globalSinglePlayer)
   {
-    cat("Last game played: one player\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\nHit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\n")
+    cat("Last game played: one player\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\n-Hit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\n")
   }
   else
   {
-    cat("Last game played: two players\n\nPlayer 1:\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\nHit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\nPlayer 2:\n-Shots: ",(hits[2]+failures[2]),"\n-Hits: ",hits[2],"\n-Failures: ",failures[2],"\nHit Rate: ",((hits[2]/(hits[2]+failures[2]))*100),"%\n\n")
+    cat("Last game played: two players\n\nPlayer 1:\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\n-Hit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\nPlayer 2:\n-Shots: ",(hits[2]+failures[2]),"\n-Hits: ",hits[2],"\n-Failures: ",failures[2],"\nHit Rate: ",((hits[2]/(hits[2]+failures[2]))*100),"%\n\n")
   }
 }
 
