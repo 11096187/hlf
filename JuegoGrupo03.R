@@ -242,7 +242,9 @@ shot <- function(input, table)
 # If a boat is touched or sunk, the board will be updated
 plays1 <- function(tablero1, tablero2) 
 {
+  mostrarTablero(tablero2)
   gameStatusOn <- TRUE
+  gameHasFinished = FALSE
   while (gameStatusOn) 
   {
     touched <- FALSE
@@ -278,8 +280,14 @@ plays1 <- function(tablero1, tablero2)
       tablero2 <- detectSunkBoats(tablero2)
     }
     mostrarTablero(tablero2)
+    if(gameFinished(tablero2))
+    {
+      gameStatusOn = FALSE
+      gameHasFinished = TRUE
+      print("El jugador 1 ha ganado")
+    }
   }
-  if (input != "R") 
+  if (input != "R" && !gameHasFinished) 
   {
     plays2(tablero1, tablero2)
   }
@@ -288,7 +296,9 @@ plays1 <- function(tablero1, tablero2)
 # Does what "player1" function does, but for player 2
 plays2 <- function(tablero1, tablero2) 
 {
+  mostrarTablero(tablero1)
   gameStatusOn <- TRUE
+  gameHasFinished = FALSE
   while (gameStatusOn) 
   {
     touched <- FALSE
@@ -323,8 +333,14 @@ plays2 <- function(tablero1, tablero2)
       tablero1 <- detectSunkBoats(tablero1)
     }
     mostrarTablero(tablero1)
+    if(gameFinished(tablero1))
+    {
+      gameStatusOn = FALSE
+      gameHasFinished = TRUE
+      print("El jugador 2 ha ganado")
+    }
   }
-  if (input != "R") 
+  if (input != "R" && !gameHasFinished) 
   {
     plays1(tablero1, tablero2)
   }
@@ -1200,14 +1216,14 @@ option2 <- function() {
 
 option3 <- function() 
 {
-  cat("Number of games played: \n-One player: ",games[1],"\nTwo players: ",games[2],"\n\n")
+  cat("Number of games played: \n-One player: ",games[1],"\n-Two players: ",games[2],"\n\n")
   if(globalSinglePlayer)
   {
     cat("Last game played: one player\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\n-Hit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\n")
   }
   else
   {
-    cat("Last game played: two players\n\nPlayer 1:\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\n-Hit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\nPlayer 2:\n-Shots: ",(hits[2]+failures[2]),"\n-Hits: ",hits[2],"\n-Failures: ",failures[2],"\nHit Rate: ",((hits[2]/(hits[2]+failures[2]))*100),"%\n\n")
+    cat("Last game played: two players\n\nPlayer 1:\n-Shots: ",(hits[1]+failures[1]),"\n-Hits: ",hits[1],"\n-Failures: ",failures[1],"\n-Hit Rate: ",((hits[1]/(hits[1]+failures[1]))*100),"%\n\nPlayer 2:\n-Shots: ",(hits[2]+failures[2]),"\n-Hits: ",hits[2],"\n-Failures: ",failures[2],"\n-Hit Rate: ",((hits[2]/(hits[2]+failures[2]))*100),"%\n\n")
   }
 }
 
