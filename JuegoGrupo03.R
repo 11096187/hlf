@@ -1,3 +1,4 @@
+# We initialize some global variables that will be used for the statistics of option 3.
 globalSinglePlayer <- TRUE
 
 # position 1 is single player games, position 2 is two player games
