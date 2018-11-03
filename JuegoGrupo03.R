@@ -533,9 +533,9 @@ detectSunkBoats <- function(table)
   return(table)
 }
 
+#Validates that a board is valid in terms of having either water of boats that do not intersect of touch one another
 validateEntireTable <- function(table)
 {
-  
   valid = TRUE
   
   for (x in 1:5)
@@ -555,6 +555,7 @@ validateEntireTable <- function(table)
   
   if (valid)
   {
+    #In order to be able to look around cells in the first and last rows and columns more easily, auxiliary rows and columns of water are added to the table that only live within the boundaries of this function.
     table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
     table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
     table = rbind(table,c("b","b","b","b","b","b","b","b","b","b","b","b"))
@@ -588,8 +589,10 @@ validateEntireTable <- function(table)
   return(valid)
 }
 
+#Receives the board of a player and returns an array with 5 values, each of them with the number of boats of each size. This validations is used when the board is imported from an .xls file given that the array ???flota??? would not get updated every time a user inserts a boat as is the case in the two-player mode.
 countFlota <- function(table)
 {
+  #In order to be able to look around cells in the first and last rows and columns more easily, auxiliary rows and columns of water are added to the table that only live within the boundaries of this function.
   table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
   table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
   table = rbind(table,c("b","b","b","b","b","b","b","b","b","b","b","b"))
@@ -711,6 +714,7 @@ countFlota <- function(table)
   return(flota)
 }
 
+#Checks is one player has sunk all boats of his/her opponent
 gameFinished <- function(table)
 {
   valid = TRUE
@@ -727,6 +731,7 @@ gameFinished <- function(table)
   return(valid)
 }
 
+#Receives a string position for a boat in the two-player mode of the game and returns an array in the form of [starting row, starting col, horizontal or vertical, length]. If the input sent to the function is not valid, the array returned by the function will have zeroes in all of its positions.
 getPosition <- function(input)
 {
   valid = TRUE
@@ -814,10 +819,12 @@ getPosition <- function(input)
   return(result)
 }
 
+#Checks whether a boat trying to be inserted during a two-player game overlaps with the boats previously inserted by the player. Returns TRUE if there is no overlap and FALSE otherwise.
 noOverlap <- function (table,position)
 {
   valid = TRUE
   
+  #In order to be able to look around cells in the first and last rows and columns more easily, auxiliary rows and columns of water are added to the table that only live within the boundaries of this function.
   table = cbind(table,c("b","b","b","b","b","b","b","b","b","b"))
   table = cbind(c("b","b","b","b","b","b","b","b","b","b"),table)
   table = rbind(table,c("b","b","b","b","b","b","b","b","b","b","b","b"))
