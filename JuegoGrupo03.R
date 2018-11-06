@@ -73,7 +73,7 @@ userInput <- function()
   return(nro)
 }
 
-# This function receives a string and validates if it can be converted to a number (otherwishe it will come up with an "na"). Returns TRUE if valid and FALSE if invalid
+# This function receives a string and validates if it can be converted to a number (otherwise it will come up with an "na"). Returns TRUE if valid and FALSE if invalid
 validarSiNro <- function(nro) 
 {
   valido <- TRUE
@@ -158,7 +158,7 @@ actualizarFlota <- function(input, flota)
   return(flota)
 }
 
-# Prints the board it receives as parameter. Since we keep coordinates as numbers for the back-end of the game, in this function column names are turnes into letters for the player to see.
+# Prints the board it receives as parameter. Since we keep coordinates as numbers for the back-end of the game, in this function column names are turned into letters for the player to see.
 mostrarTablero <- function(tablero) 
 {
   colnames(tablero) <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
