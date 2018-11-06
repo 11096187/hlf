@@ -202,6 +202,10 @@ validateShot <- function(input)
     {
       valid <- FALSE
     }
+    else if (as.numeric(char1) < 1 || as.numeric(char1) > 10)
+    {
+      valid <- FALSE
+    }
   }
   return(valid)
 }
